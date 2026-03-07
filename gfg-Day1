@@ -1,0 +1,64 @@
+1. Missing number in an array
+
+class Solution {
+    int missingNum(int arr[]) {
+        long sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+        }
+         int n=arr.length+1;
+         long actualsum=(long)n*(n+1)/2;
+         return (int)(actualsum-sum);
+    }
+}
+
+=============================================================================================================
+
+2.Subarray sum equal to target
+
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target){
+        ArrayList<Integer> list=new ArrayList<>();
+        int j=0;
+        int sum=0;
+        for(int i=0;i<arr.length;i++){
+             sum+=arr[i];
+            while(sum>target){
+                sum-=arr[j];
+                j++;
+            }
+            if(sum==target){
+                list.add(j+1);
+                list.add(i+1);
+                return list;
+            }
+        }
+        list.add(-1);
+        return list;
+    }
+}
+
+=================================================================================================
+
+3. Second largest element
+
+class Solution {
+    public int getSecondLargest(int[] arr) {
+        int largest=-1;
+        int second=-1;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>largest){
+                largest=arr[i];
+            }
+        }
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>second&&arr[i]!=largest){
+                second=arr[i];
+            }
+        }
+        return second;
+    }
+}
+
+
+
