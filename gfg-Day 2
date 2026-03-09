@@ -1,0 +1,83 @@
+1)    You are given a string s. The score of a string is defined as the sum of the absolute difference between the ASCII values of adjacent characters.
+Return the score of s.
+Example 1:
+Input: s = "code"
+Output: 24
+
+class Solution {
+    public int scoreOfString(String s) {
+        char[] arr=s.toCharArray();
+        int sum=0;
+        
+        for(int i=0;i<arr.length-1;i++){
+              int sub=arr[i]-arr[i+1];
+              if(sub<0){
+                sub=-(sub);
+              }
+              sum+=sub;
+        }
+        return sum;
+    }
+}
+
+ALTERNATE SOLUTION
+
+class Solution {
+public int scoreOfString(String s) {
+int count= 0;
+for(int i = 1;i<s.length();i++){
+count+=Math.abs(s.charAt(i)-s.charAt(i-1));
+}
+return count;
+}
+}
+===========================================================================================================================================================
+
+2) You are given an integer array nums of length n. Create an array ans of length 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
+Specifically, ans is the concatenation of two nums arrays.
+Return the array ans.
+
+Example 1:
+
+Input: nums = [1,4,1,2]
+
+Output: [1,4,1,2,1,4,1,2]
+
+
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+        int ans[]=new int[nums.length+nums.length];
+        int ind=0;
+        for(int i=0;i<nums.length;i++){
+          ans[ind]=nums[i];
+          ans[ind+nums.length]=nums[i];
+          ind++;
+        }
+        return ans;
+    }
+}
+
+===============================================================================================================================================================
+
+3)Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
+
+Example 1:
+
+Input: nums = [1, 2, 3, 3]
+
+Output: true
+
+class Solution {
+    public boolean hasDuplicate(int[] nums) {
+       Set<Integer> set=new HashSet<>();
+       for(int i:nums){
+        if(set.contains(i)){
+          return true;
+        }
+        set.add(i);
+       }
+       return false;
+    }
+}
+==============================================================================================================================================================
+
