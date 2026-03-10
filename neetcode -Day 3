@@ -1,0 +1,130 @@
+1) Given two strings s and t, return true if the two strings are anagrams of each other, otherwise return false.
+An anagram is a string that contains the exact same characters as another string, but the order of the characters can be different.
+Example 1:
+
+Input: s = "racecar", t = "carrace"
+Output: true
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+             int freq[]=new int[26];
+             if(s.length()!=t.length()){
+              return false;
+             }
+             for(int i=0;i<s.length();i++){
+              freq[s.charAt(i)-'a']++;
+              freq[t.charAt(i)-'a']--;
+             }
+             for(int i=0;i<26;i++){
+              if(freq[i]!=0){
+                return false;
+              }
+             }
+             return true;
+    }
+}
+
+ALTERNATE
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+             char[] s1=s.toCharArray();
+             char[] s2=t.toCharArray();
+             Arrays.sort(s1);
+             Arrays.sort(s2);
+             if(Arrays.equals(s1,s2)){
+              return true;
+             }
+    return false;
+    }
+}
+
+==================================================================================================================================================================
+2) You are given an array arr, replace every element in that array with the greatest element among the elements to its right, and replace the last element with -1.
+After doing so, return the array.
+
+Example 1:
+
+Input: arr = [2,4,5,3,1,2]
+Output: [5,5,3,2,2,-1]
+
+class Solution {
+    public int[] replaceElements(int[] arr) {
+       for(int i=0;i<arr.length-1;i++){
+        int max=0;
+        for(int j=i+1;j<arr.length;j++){
+            if(arr[j]>max) max=arr[j];
+     }
+     arr[i]=max;
+       } 
+       arr[arr.length-1]=-1;
+       return arr;
+    }
+}
+
+===================================================================================================================================================================
+
+3) You are given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+
+Example 1:
+
+Input: s = "node", t = "neetcode"
+Output: true
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+
+        if(s.length()>t.length()){
+            return false;
+        }
+        char[]  s1=s.toCharArray();
+        char[]  t1=t.toCharArray();
+        int i=0,j=0;
+        while(i<s.length()&&j<t.length()){
+            if(s1[i]==t1[j])  i++;
+            j++;
+        }
+        return i==s.length();
+    }
+}
+
+===================================================================================================================================================================
+
+4) You are given two strings s and t consisting of only lowercase English letters.
+Return the minimum number of characters that need to be appended to the end of s so that t becomes a subsequence of s.
+A subsequence is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+
+Example 1:
+
+Input: s = "coaching", t = "coding"
+Output: 4
+
+class Solution {
+    public int appendCharacters(String s, String t) {
+        char[] s1=s.toCharArray();
+        char[] t1=t.toCharArray();
+        int i=0,j=0;
+        while(i<s.length() &&j<t.length()){
+            if(s1[i]==t1[j]) j++;
+            i++;
+        }
+        return t.length()-j;
+    }
+}
+
+===================================================================================================================================================================
+5) Length Of Last Word
+
+class Solution {
+    public int lengthOfLastWord(String s) {
+        s.trim();
+        String[] parts=s.split(" ");
+        int n=parts.length;
+        String str=parts[n-1];
+        return str.length();
+    }
+}
+
+===================================================================================================================================================================
+
